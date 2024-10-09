@@ -31,9 +31,42 @@
   height: 450px;
   width: 100%;
 }
+.div3 {
+  height: 450px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+}
+.div4 {
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 150px;
+  position: absolute;
+  top: 170px;
+  right: 200px;
+  background-color: aliceblue;
+  width: 75%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  /* border: 1px solid black; */
+}
 :global(.leaflet-container) {
   height: 100%;
 }
 .leaflet_container {
   height: 100% !important;
+}
+.div5 {
+  width: 180px;
+  border-right: 1px solid black;
+}
+.h4 {
+  color: rgb(121, 121, 121);
+  font-weight: 900;
+  font-size: 20px;
 }

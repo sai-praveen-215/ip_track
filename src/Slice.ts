@@ -2,25 +2,26 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface State {
-  data: any; // You can specify a more specific type instead of 'any'
+  data: any;
   loading: boolean;
-  error: string | null; // Make error nullable
+  error: string | null;
+  dataLoading: boolean;
 }
 
 const initialState: State = {
   data: null,
   loading: false,
   error: null,
+  dataLoading: false,
 };
 
-// Create async thunk
 export const getapi = createAsyncThunk("getdata", async (ipAddress: string) => {
   const url = `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_qZuBys4yIUxsMi3M37se9m0W6uBRn&ipAddress=${ipAddress}`;
-  const response = await axios.get(url); // Wait for the API response
-  return response.data; // Return the response data
+  const response = await axios.get(url);
+  console.log(response, "res");
+  return response.data;
 });
 
-// Create slice
 const getSlice = createSlice({
   name: "user",
   initialState,
@@ -29,16 +30,17 @@ const getSlice = createSlice({
     builder
       .addCase(getapi.pending, (state) => {
         state.loading = true;
-        state.error = null; // Reset error on new request
+
+        state.error = null;
       })
       .addCase(getapi.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload; // Assign the fetched data
+        state.data = action.payload;
       })
       .addCase(getapi.rejected, (state, action: any) => {
         state.loading = false;
-        state.error = action.error.message; // Set error message
-        state.data = null; // Reset data on error
+        state.error = action.error.message;
+        state.data = null;
       });
   },
 });
